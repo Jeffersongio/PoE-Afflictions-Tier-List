@@ -1,0 +1,1352 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PoE Sanctum — Afflictions Tier List</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600&family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #c9a84c;
+    --gold-light: #e8c96a;
+    --gold-dark: #8a6a1e;
+    --s-color: #ff4444;
+    --s-glow: #ff000088;
+    --a-color: #ff8c00;
+    --a-glow: #ff8c0066;
+    --b-color: #4fc3f7;
+    --b-glow: #4fc3f755;
+    --c-color: #81c784;
+    --c-glow: #81c78440;
+    --bg: #0a0806;
+    --panel: #110e0b;
+    --panel2: #1a1510;
+    --border: #3a2d1a;
+    --text: #d4b896;
+    --text-dim: #7a6348;
+    --purple: #9b59b6;
+    --purple-glow: #9b59b655;
+    --major-color: #c26bff;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background-color: var(--bg);
+    background-image:
+      radial-gradient(ellipse at 20% 0%, #1a0d0088 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 0%, #0d001a88 0%, transparent 50%),
+      url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c9a84c' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    color: var(--text);
+    font-family: 'EB Garamond', Georgia, serif;
+    min-height: 100vh;
+  }
+
+  header {
+    text-align: center;
+    padding: 60px 20px 40px;
+    position: relative;
+  }
+
+  header::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--gold), var(--purple), var(--gold), transparent);
+  }
+
+  .header-eyebrow {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: var(--gold-dark);
+    margin-bottom: 14px;
+  }
+
+  h1 {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(26px, 5vw, 52px);
+    color: var(--gold-light);
+    text-shadow: 0 0 40px var(--gold-dark), 0 0 80px #c9a84c33;
+    line-height: 1.15;
+    letter-spacing: 2px;
+  }
+
+  h1 span {
+    color: var(--major-color);
+    text-shadow: 0 0 30px var(--purple-glow);
+  }
+
+  .subtitle {
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+    color: var(--text-dim);
+    margin-top: 14px;
+    font-size: 17px;
+    letter-spacing: 1px;
+  }
+
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    max-width: 600px;
+    margin: 30px auto;
+  }
+  .divider::before, .divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold-dark));
+  }
+  .divider::after { background: linear-gradient(270deg, transparent, var(--gold-dark)); }
+  .divider-gem {
+    width: 8px; height: 8px;
+    background: var(--gold);
+    transform: rotate(45deg);
+    box-shadow: 0 0 10px var(--gold);
+  }
+
+  .legend {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 0 20px 40px;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    letter-spacing: 1px;
+    color: var(--text-dim);
+  }
+
+  .legend-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+  }
+
+  .main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px 80px;
+  }
+
+  .tier-section {
+    margin-bottom: 50px;
+  }
+
+  .tier-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+  }
+
+  .tier-badge {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 36px;
+    font-weight: 700;
+    min-width: 54px;
+    text-align: center;
+    line-height: 1;
+    position: relative;
+  }
+
+  .tier-s .tier-badge { color: var(--s-color); text-shadow: 0 0 20px var(--s-glow), 0 0 40px var(--s-glow); }
+  .tier-a .tier-badge { color: var(--a-color); text-shadow: 0 0 20px var(--a-glow); }
+  .tier-b .tier-badge { color: var(--b-color); text-shadow: 0 0 20px var(--b-glow); }
+  .tier-c .tier-badge { color: var(--c-color); text-shadow: 0 0 20px var(--c-glow); }
+
+  .tier-title-block { flex: 1; }
+
+  .tier-name {
+    font-family: 'Cinzel', serif;
+    font-size: 14px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .tier-s .tier-name { color: var(--s-color); }
+  .tier-a .tier-name { color: var(--a-color); }
+  .tier-b .tier-name { color: var(--b-color); }
+  .tier-c .tier-name { color: var(--c-color); }
+
+  .tier-desc {
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--text-dim);
+  }
+
+  .tier-count {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--text-dim);
+    padding: 4px 10px;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+  }
+
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 14px;
+  }
+
+  .card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 16px 18px;
+    position: relative;
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    cursor: default;
+    overflow: hidden;
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 100%;
+  }
+  .tier-s .card::before { background: var(--s-color); box-shadow: 2px 0 12px var(--s-glow); }
+  .tier-a .card::before { background: var(--a-color); box-shadow: 2px 0 10px var(--a-glow); }
+  .tier-b .card::before { background: var(--b-color); box-shadow: 2px 0 10px var(--b-glow); }
+  .tier-c .card::before { background: var(--c-color); }
+
+  .card:hover {
+    transform: translateY(-2px);
+    background: var(--panel2);
+  }
+  .tier-s .card:hover { border-color: var(--s-color); box-shadow: 0 4px 20px var(--s-glow); }
+  .tier-a .card:hover { border-color: var(--a-color); box-shadow: 0 4px 16px var(--a-glow); }
+  .tier-b .card:hover { border-color: var(--b-color); box-shadow: 0 4px 16px var(--b-glow); }
+  .tier-c .card:hover { border-color: var(--c-color); box-shadow: 0 4px 16px var(--c-glow); }
+
+  .card-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+
+  .card-name {
+    font-family: 'Cinzel', serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--gold-light);
+    letter-spacing: 0.5px;
+    line-height: 1.3;
+  }
+
+  .card-type {
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 2px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .type-minor {
+    background: #2a1f3a;
+    border: 1px solid #4a2f6a;
+    color: #b08ce0;
+  }
+  .type-major {
+    background: #3a1020;
+    border: 1px solid #8a1540;
+    color: var(--major-color);
+  }
+
+  .card-effect {
+    font-family: 'EB Garamond', serif;
+    font-size: 15px;
+    color: var(--text);
+    line-height: 1.5;
+    font-style: italic;
+  }
+
+  .card-note {
+    margin-top: 8px;
+    font-family: 'EB Garamond', serif;
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.4;
+  }
+
+  /* tab nav */
+  .tab-nav {
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    margin-bottom: 40px;
+    border-bottom: 1px solid var(--border);
+  }
+  .tab-btn {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 12px 28px;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    color: var(--text-dim);
+    cursor: pointer;
+    margin-bottom: -1px;
+    transition: all 0.2s;
+  }
+  .tab-btn:hover { color: var(--gold); }
+  .tab-btn.active { color: var(--gold-light); border-bottom-color: var(--gold); }
+
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  /* quick ref */
+  .qr-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+    margin-bottom: 20px;
+  }
+  .qr-col {
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .qr-head {
+    padding: 14px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+  }
+  .qr-s { background: #2a0a0a; }
+  .qr-a { background: #251500; }
+  .qr-b { background: #061825; }
+  .qr-letter {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1;
+  }
+  .qr-s .qr-letter { color: var(--s-color); text-shadow: 0 0 16px var(--s-glow); }
+  .qr-a .qr-letter { color: var(--a-color); }
+  .qr-b .qr-letter { color: var(--b-color); }
+  .qr-sub {
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 4px;
+    color: var(--text-dim);
+  }
+  .qr-items { padding: 10px; display: flex; flex-direction: column; gap: 5px; }
+  .qr-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px;
+    padding: 7px 10px;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+  }
+  .qr-name {
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    color: var(--text);
+    line-height: 1.3;
+  }
+  .qr-tag {
+    font-family: 'Cinzel', serif;
+    font-size: 8px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 2px 6px;
+    border-radius: 2px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .qr-tag-minor { background: #2a1f3a; border: 1px solid #4a2f6a; color: #b08ce0; }
+  .qr-tag-major { background: #3a1020; border: 1px solid #8a1540; color: var(--major-color); }
+
+  /* room objectives tab */
+  .rooms-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 14px;
+  }
+  .room-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .room-card-head {
+    padding: 10px 14px 8px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .room-obj-icon {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+  .obj-exit    { background: #061825; border: 1px solid #1a4a6a; }
+  .obj-guards  { background: #250808; border: 1px solid #6a1a1a; }
+  .obj-arena   { background: #1a0e25; border: 1px solid #5a1a8a; }
+  .obj-boss    { background: #1a1000; border: 1px solid #7a5500; }
+  .obj-special { background: #0a1a0a; border: 1px solid #1a6a1a; }
+
+  .room-obj-label {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+  .obj-exit-text   { color: #4fc3f7; }
+  .obj-guards-text { color: #ff6b6b; }
+  .obj-arena-text  { color: #c26bff; }
+  .obj-boss-text   { color: var(--gold); }
+  .obj-special-text{ color: #81c784; }
+
+  .room-obj-desc {
+    font-family: 'EB Garamond', serif;
+    font-size: 12px;
+    font-style: italic;
+    color: var(--text-dim);
+    margin-top: 1px;
+  }
+  .room-names-list {
+    padding: 10px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .room-floor-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .floor-badge {
+    font-family: 'Cinzel', serif;
+    font-size: 8px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    background: var(--panel2);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    padding: 2px 6px;
+    color: var(--text-dim);
+    white-space: nowrap;
+    margin-top: 1px;
+    flex-shrink: 0;
+  }
+  .room-names-text {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    color: var(--text);
+    line-height: 1.6;
+  }
+  .room-tip {
+    margin: 0 14px 10px;
+    padding: 7px 10px;
+    background: var(--panel2);
+    border-left: 2px solid var(--gold-dark);
+    border-radius: 0 3px 3px 0;
+    font-family: 'EB Garamond', serif;
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+
+  @media (max-width: 700px) {
+    .qr-grid { grid-template-columns: 1fr; }
+    .tab-btn { padding: 10px 14px; font-size: 9px; letter-spacing: 2px; }
+    .rooms-grid { grid-template-columns: 1fr; }
+  }
+
+  /* filter bar */
+  .filter-bar {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 40px;
+  }
+
+  .filter-btn {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 8px 18px;
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    cursor: pointer;
+    border-radius: 2px;
+    transition: all 0.2s;
+  }
+  .filter-btn:hover { border-color: var(--gold-dark); color: var(--gold); }
+  .filter-btn.active { border-color: var(--gold); color: var(--gold); background: #c9a84c11; }
+
+  footer {
+    text-align: center;
+    padding: 30px 20px;
+    border-top: 1px solid var(--border);
+    font-family: 'EB Garamond', serif;
+    font-size: 13px;
+    color: var(--text-dim);
+    font-style: italic;
+  }
+
+  @media (max-width: 600px) {
+    .cards-grid { grid-template-columns: 1fr; }
+    h1 { font-size: 24px; }
+    .tier-badge { font-size: 28px; min-width: 40px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-eyebrow">Path of Exile · The Forbidden Sanctum</div>
+  <h1>Afflictions <span>Tier List</span></h1>
+  <p class="subtitle">Guia completo de Aflições do Sanctum — do pior ao mais administrável</p>
+  <div class="divider"><div class="divider-gem"></div></div>
+</header>
+
+<div class="legend">
+  <div class="legend-item"><div class="legend-dot" style="background:var(--s-color);box-shadow:0 0 6px var(--s-glow)"></div>S — Encerra a run</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--a-color)"></div>A — Muito perigosa</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--b-color)"></div>B — Administrável</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--c-color)"></div>C — Quase irrelevante</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--major-color)"></div>Major Affliction</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#b08ce0"></div>Minor Affliction</div>
+</div>
+
+<div class="main">
+  <div class="tab-nav">
+    <button class="tab-btn active" onclick="switchTab('guia', this)">Guia Completo</button>
+    <button class="tab-btn" onclick="switchTab('ref', this)">⚡ Referência Rápida</button>
+    <button class="tab-btn" onclick="switchTab('salas', this)">🗺️ Objetivos das Salas</button>
+  </div>
+
+  <!-- REFERÊNCIA RÁPIDA -->
+  <div id="tab-ref" class="tab-panel">
+    <div class="qr-grid">
+
+      <!-- S -->
+      <div class="qr-col">
+        <div class="qr-head qr-s">
+          <div class="qr-letter">S</div>
+          <div class="qr-sub">Encerra a run — nunca pegar</div>
+        </div>
+        <div class="qr-items">
+          <div class="qr-item"><span class="qr-name">Deceptive Mirror</span><span class="qr-tag qr-tag-minor">Minor</span></div>
+          <div class="qr-item"><span class="qr-name">Fiendish Wings</span><span class="qr-tag qr-tag-minor">Minor</span></div>
+          <div class="qr-item"><span class="qr-name">Liquid Cowardice</span><span class="qr-tag qr-tag-minor">Minor</span></div>
+          <div class="qr-item"><span class="qr-name">Accursed Prism</span><span class="qr-tag qr-tag-minor">Minor</span></div>
+          <div class="qr-item"><span class="qr-name">Purple Smoke</span><span class="qr-tag qr-tag-minor">Minor</span></div>
+          <div class="qr-item"><span class="qr-name">Golden Smoke</span><span class="qr-tag qr-tag-minor">Minor</span></div>
+          <div class="qr-item"><span class="qr-name">Floor Tax</span><span class="qr-tag qr-tag-minor">Minor</span></div>
+          <div class="qr-item"><span class="qr-name">Deadly Snare</span><span class="qr-tag qr-tag-major">Major</span></div>
+          <div class="qr-item"><span class="qr-name">Veiled Sight</span><span class="qr-tag qr-tag-major">Major</span></div>
+        </div>
+      </div>
+
+      <!-- A -->
+      <div class="qr-col">
+        <div class="qr-head qr-a">
+          <div class="qr-letter">A</div>
+          <div class="qr-sub">Muito perigosa — evitar se possível</div>
+        </div>
+        <div class="qr-items">
+          <div class="qr-item"><span class="qr-name">Door Tax</span><span class="qr-tag qr-tag-minor">Minor</span></div>
+          <div class="qr-item"><span class="qr-name">Empty Trove</span><span class="qr-tag qr-tag-minor">Minor</span></div>
+          <div class="qr-item"><span class="qr-name">Voodoo Doll</span><span class="qr-tag qr-tag-minor">Minor</span></div>
+          <div class="qr-item"><span class="qr-name">Haemorrhage</span><span class="qr-tag qr-tag-minor">Minor</span></div>
+          <div class="qr-item"><span class="qr-name">Tight Choker</span><span class="qr-tag qr-tag-minor">Minor</span></div>
+          <div class="qr-item"><span class="qr-name">Dark Pit</span><span class="qr-tag qr-tag-minor">Minor</span></div>
+          <div class="qr-item"><span class="qr-name">Demonic Skull</span><span class="qr-tag qr-tag-major">Major</span></div>
+          <div class="qr-item"><span class="qr-name">Death Toll</span><span class="qr-tag qr-tag-major">Major</span></div>
+          <div class="qr-item"><span class="qr-name">Ghastly Scythe</span><span class="qr-tag qr-tag-major">Major</span></div>
+          <div class="qr-item"><span class="qr-name">Cutpurse</span><span class="qr-tag qr-tag-major">Major</span></div>
+          <div class="qr-item"><span class="qr-name">Unassuming Brick</span><span class="qr-tag qr-tag-major">Major</span></div>
+        </div>
+      </div>
+
+      <!-- B -->
+      <div class="qr-col">
+        <div class="qr-head qr-b">
+          <div class="qr-letter">B</div>
+          <div class="qr-sub">Administrável — ok com cuidado</div>
+        </div>
+        <div class="qr-items">
+          <div class="qr-item"><span class="qr-name">Worn Sandals</span><span class="qr-tag qr-tag-minor">Minor</span></div>
+          <div class="qr-item"><span class="qr-name">Hungry Fangs</span><span class="qr-tag qr-tag-minor">Minor</span></div>
+          <div class="qr-item"><span class="qr-name">Honed Claws</span><span class="qr-tag qr-tag-minor">Minor</span></div>
+          <div class="qr-item"><span class="qr-name">Weakened Flesh</span><span class="qr-tag qr-tag-minor">Minor</span></div>
+          <div class="qr-item"><span class="qr-name">Mark of Terror</span><span class="qr-tag qr-tag-minor">Minor</span></div>
+          <div class="qr-item"><span class="qr-name">Unquenched Thirst</span><span class="qr-tag qr-tag-minor">Minor</span></div>
+          <div class="qr-item"><span class="qr-name">Spiked Shell</span><span class="qr-tag qr-tag-minor">Minor</span></div>
+          <div class="qr-item"><span class="qr-name">Concealed Anomaly</span><span class="qr-tag qr-tag-minor">Minor</span></div>
+          <div class="qr-item"><span class="qr-name">Rapid Quicksand</span><span class="qr-tag qr-tag-minor">Minor</span></div>
+          <div class="qr-item"><span class="qr-name">Blunt Sword</span><span class="qr-tag qr-tag-minor">Minor</span></div>
+          <div class="qr-item"><span class="qr-name">Spilt Purse</span><span class="qr-tag qr-tag-minor">Minor</span></div>
+          <div class="qr-item"><span class="qr-name">Red Smoke</span><span class="qr-tag qr-tag-minor">Minor</span></div>
+          <div class="qr-item"><span class="qr-name">Unhallowed Ring</span><span class="qr-tag qr-tag-minor">Minor</span></div>
+          <div class="qr-item"><span class="qr-name">Poisoned Water</span><span class="qr-tag qr-tag-minor">Minor</span></div>
+          <div class="qr-item"><span class="qr-name">Anomaly Attractor</span><span class="qr-tag qr-tag-major">Major</span></div>
+          <div class="qr-item"><span class="qr-name">Chiselled Stone</span><span class="qr-tag qr-tag-major">Major</span></div>
+          <div class="qr-item"><span class="qr-name">Corrosive Concoction</span><span class="qr-tag qr-tag-major">Major</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- OBJETIVOS DAS SALAS -->
+  <div id="tab-salas" class="tab-panel">
+    <div class="rooms-grid">
+
+      <!-- FIND THE EXIT -->
+      <div class="room-card">
+        <div class="room-card-head">
+          <div class="room-obj-icon obj-exit">🚪</div>
+          <div>
+            <div class="room-obj-label obj-exit-text">Encontre a Saída</div>
+            <div class="room-obj-desc">Navegue até a porta de saída</div>
+          </div>
+        </div>
+        <div class="room-names-list">
+          <div class="room-floor-row">
+            <span class="floor-badge">Andar 1</span>
+            <span class="room-names-text">Holy Trials · Gauntlet</span>
+          </div>
+          <div class="room-floor-row">
+            <span class="floor-badge">Andar 2</span>
+            <span class="room-names-text">Crypt · Ossuary</span>
+          </div>
+          <div class="room-floor-row">
+            <span class="floor-badge">Andar 3</span>
+            <span class="room-names-text">Sanctum Bellum · Scriptorium</span>
+          </div>
+          <div class="room-floor-row">
+            <span class="floor-badge">Andar 4</span>
+            <span class="room-names-text">Reliquary · Mausoleum</span>
+          </div>
+        </div>
+        <div class="room-tip">💡 Maioria tem atalhos que exigem skill de movimento. Ignore os monstros se puder — só vá para a saída.</div>
+      </div>
+
+      <!-- FIND EXIT + TRAPS -->
+      <div class="room-card">
+        <div class="room-card-head">
+          <div class="room-obj-icon obj-exit">⚠️</div>
+          <div>
+            <div class="room-obj-label obj-exit-text">Saída com Armadilhas</div>
+            <div class="room-obj-desc">Saída no fim de um corredor cheio de traps</div>
+          </div>
+        </div>
+        <div class="room-names-list">
+          <div class="room-floor-row">
+            <span class="floor-badge">Andar 1</span>
+            <span class="room-names-text">Crucible · Entombment</span>
+          </div>
+          <div class="room-floor-row">
+            <span class="floor-badge">Andar 2</span>
+            <span class="room-names-text">Torture Chamber · Pit of Filth</span>
+          </div>
+          <div class="room-floor-row">
+            <span class="floor-badge">Andar 3</span>
+            <span class="room-names-text">Infernum · Desecrated Crypt</span>
+          </div>
+          <div class="room-floor-row">
+            <span class="floor-badge">Andar 4</span>
+            <span class="room-names-text">Crypt of Torment · Abyssal Lair</span>
+          </div>
+        </div>
+        <div class="room-tip">⚠️ Infernum e Desecrated Crypt são considerados os layouts mais difíceis. Evite se possível.</div>
+      </div>
+
+      <!-- DEFEAT ALL GUARDS (linear) -->
+      <div class="room-card">
+        <div class="room-card-head">
+          <div class="room-obj-icon obj-guards">⚔️</div>
+          <div>
+            <div class="room-obj-label obj-guards-text">Mate todos os Guardiões</div>
+            <div class="room-obj-desc">Derrote todos os monstros raros e Guardiões únicos</div>
+          </div>
+        </div>
+        <div class="room-names-list">
+          <div class="room-floor-row">
+            <span class="floor-badge">Andar 1</span>
+            <span class="room-names-text">Chambers of Inscription · Derelict Caverns</span>
+          </div>
+          <div class="room-floor-row">
+            <span class="floor-badge">Andar 2</span>
+            <span class="room-names-text">Unholy Lair · Lost Catacombs</span>
+          </div>
+          <div class="room-floor-row">
+            <span class="floor-badge">Andar 3</span>
+            <span class="room-names-text">Sanctum Antechamber · Profane Chapel</span>
+          </div>
+          <div class="room-floor-row">
+            <span class="floor-badge">Andar 4</span>
+            <span class="room-names-text">Inner Sanctum · Forbidden Archive</span>
+          </div>
+        </div>
+        <div class="room-tip">💡 Guardiões ficam espalhados pelo mapa em grupos ao longo de um caminho linear. Explore tudo.</div>
+      </div>
+
+      <!-- BATTLE ARENA -->
+      <div class="room-card">
+        <div class="room-card-head">
+          <div class="room-obj-icon obj-arena">🏟️</div>
+          <div>
+            <div class="room-obj-label obj-arena-text">Arena de Batalha</div>
+            <div class="room-obj-desc">Ondas de guardiões em arena pequena com armadilhas</div>
+          </div>
+        </div>
+        <div class="room-names-list">
+          <div class="room-floor-row">
+            <span class="floor-badge">Andar 1</span>
+            <span class="room-names-text">Candlelit Chapel · Hall of Mirrors</span>
+          </div>
+          <div class="room-floor-row">
+            <span class="floor-badge">Andar 2</span>
+            <span class="room-names-text">Experimentation Chamber · Sanctum Sanctorum</span>
+          </div>
+          <div class="room-floor-row">
+            <span class="floor-badge">Andar 3</span>
+            <span class="room-names-text">Ceremonial Chamber · Temple Atrium</span>
+          </div>
+          <div class="room-floor-row">
+            <span class="floor-badge">Andar 4</span>
+            <span class="room-names-text">Ritual Hall · Altar of Dedication</span>
+          </div>
+        </div>
+        <div class="room-tip">☠️ Mais difícil de todas — guardiões em ondas + trap central de feixe de fogo. Evite se não precisar.</div>
+      </div>
+
+      <!-- MINIBOSS -->
+      <div class="room-card">
+        <div class="room-card-head">
+          <div class="room-obj-icon obj-boss">👑</div>
+          <div>
+            <div class="room-obj-label obj-boss-text">Mini Boss</div>
+            <div class="room-obj-desc">Derrote o miniboss do andar</div>
+          </div>
+        </div>
+        <div class="room-names-list">
+          <div class="room-floor-row">
+            <span class="floor-badge">Andar 1</span>
+            <span class="room-names-text">Scriptorium — <em style="color:var(--gold)">Crimson Archbishop</em></span>
+          </div>
+          <div class="room-floor-row">
+            <span class="floor-badge">Andar 2</span>
+            <span class="room-names-text">Reliquary — <em style="color:var(--gold)">Greater Wraith</em></span>
+          </div>
+          <div class="room-floor-row">
+            <span class="floor-badge">Andar 3</span>
+            <span class="room-names-text">Sanctum Bellum — <em style="color:var(--gold)">Aureate Guardian</em></span>
+          </div>
+          <div class="room-floor-row">
+            <span class="floor-badge">Andar 4</span>
+            <span class="room-names-text">Mausoleum — <em style="color:var(--gold)">Colossal Lithomancer</em></span>
+          </div>
+        </div>
+        <div class="room-tip">💰 Dropa ~200 Aureus + recompensa da sala. Quase tão lucrativo quanto Major Treasure. Vale a pena!</div>
+      </div>
+
+      <!-- SALAS ESPECIAIS -->
+      <div class="room-card">
+        <div class="room-card-head">
+          <div class="room-obj-icon obj-special">✨</div>
+          <div>
+            <div class="room-obj-label obj-special-text">Salas Especiais</div>
+            <div class="room-obj-desc">Sem combate — interação ou coleta</div>
+          </div>
+        </div>
+        <div class="room-names-list">
+          <div class="room-floor-row">
+            <span class="floor-badge" style="color:#c26bff;border-color:#5a1a8a">Fountain</span>
+            <span class="room-names-text">Recupera Resolve. Afflicted Fountain dá affliction — não é obrigado a usar.</span>
+          </div>
+          <div class="room-floor-row">
+            <span class="floor-badge" style="color:var(--gold);border-color:var(--gold-dark)">Merchant</span>
+            <span class="room-names-text">Sister Divinia vende Boons e Relics por Aureus. Guarde moedas para ela!</span>
+          </div>
+          <div class="room-floor-row">
+            <span class="floor-badge" style="color:#81c784;border-color:#1a6a1a">Treasure</span>
+            <span class="room-names-text">Minor = 2 baús · Major = 5 baús de Aureus. Sem combate.</span>
+          </div>
+          <div class="room-floor-row">
+            <span class="floor-badge" style="color:#ff8c00;border-color:#6a3800">Pact</span>
+            <span class="room-names-text">Escolha 1–3 pactos com upside/downside. Abre baú de recompensa ao aceitar 1.</span>
+          </div>
+        </div>
+        <div class="room-tip">💡 Boss (8ª sala) = sempre o boss do andar. Não tem como evitar.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- GUIA COMPLETO -->
+  <div id="tab-guia" class="tab-panel active">
+  <div class="filter-bar">
+    <button class="filter-btn active" onclick="filterTier('all', this)">Todos</button>
+    <button class="filter-btn" onclick="filterTier('s', this)">Tier S</button>
+    <button class="filter-btn" onclick="filterTier('a', this)">Tier A</button>
+    <button class="filter-btn" onclick="filterTier('b', this)">Tier B</button>
+    <button class="filter-btn" onclick="filterTier('c', this)">Tier C</button>
+    <button class="filter-btn" onclick="filterTier('major', this)">Major</button>
+    <button class="filter-btn" onclick="filterTier('minor', this)">Minor</button>
+  </div>
+
+  <!-- TIER S -->
+  <div class="tier-section tier-s" data-tier="s">
+    <div class="tier-header">
+      <div class="tier-badge">S</div>
+      <div class="tier-title-block">
+        <div class="tier-name">Run-Ending</div>
+        <div class="tier-desc">Podem encerrar a run sozinhas — evitar a todo custo</div>
+      </div>
+      <div class="tier-count">9 afflições</div>
+    </div>
+    <div class="cards-grid">
+
+      <div class="card" data-type="minor">
+        <div class="card-top">
+          <div class="card-name">Deceptive Mirror</div>
+          <div class="card-type type-minor">Minor</div>
+        </div>
+        <div class="card-effect">"Você nem sempre é levado à sala que seleciona."</div>
+        <div class="card-note">A pior de todas. Remove completamente o controle da sua run, deixando tudo ao acaso. Pode enviar para salas com Afflictions mortais.</div>
+      </div>
+
+      <div class="card" data-type="minor">
+        <div class="card-top">
+          <div class="card-name">Fiendish Wings</div>
+          <div class="card-type type-minor">Minor</div>
+        </div>
+        <div class="card-effect">"Monstros não podem ser desacelerados abaixo da velocidade base. Monstros têm 30% de velocidade de Ataque, Conjuração e Movimento aumentada."</div>
+        <div class="card-note">Deceptivamente perigosa. Elimina Chill e Temporal Chains, tornando esquivar muito mais difícil.</div>
+      </div>
+
+      <div class="card" data-type="minor">
+        <div class="card-top">
+          <div class="card-name">Liquid Cowardice</div>
+          <div class="card-type type-minor">Minor</div>
+        </div>
+        <div class="card-effect">"Perca 10 de Resolve ao usar um Flask."</div>
+        <div class="card-note">Perda contínua de Resolve sem ser acertado. Força a remover flasks automáticos incluindo o Quicksilver Flask.</div>
+      </div>
+
+      <div class="card" data-type="minor">
+        <div class="card-top">
+          <div class="card-name">Accursed Prism</div>
+          <div class="card-type type-minor">Minor</div>
+        </div>
+        <div class="card-effect">"Ao ganhar uma Affliction, ganhe uma Minor Affliction aleatória adicional."</div>
+        <div class="card-note">Cada nova Affliction pode gerar outra Run-Ending. Efeito cascata devastador.</div>
+      </div>
+
+      <div class="card" data-type="minor">
+        <div class="card-top">
+          <div class="card-name">Purple Smoke</div>
+          <div class="card-type type-minor">Minor</div>
+        </div>
+        <div class="card-effect">"Afflictions são desconhecidas no Mapa do Sanctum."</div>
+        <div class="card-note">Impossibilita evitar salas com Afflictions perigosas. Equivale a caminhar com venda nos olhos.</div>
+      </div>
+
+      <div class="card" data-type="minor">
+        <div class="card-top">
+          <div class="card-name">Golden Smoke</div>
+          <div class="card-type type-minor">Minor</div>
+        </div>
+        <div class="card-effect">"Recompensas são desconhecidas no Mapa do Sanctum."</div>
+        <div class="card-note">Impede estratégia de rotas e impossibilita coletar Divine Orbs nos andares 3 e 4.</div>
+      </div>
+
+      <div class="card" data-type="minor">
+        <div class="card-top">
+          <div class="card-name">Floor Tax</div>
+          <div class="card-type type-minor">Minor</div>
+        </div>
+        <div class="card-effect">"Perca todos os Aureus ao completar o andar."</div>
+        <div class="card-note">Devastadora em andares 1–3. Freebie apenas no andar 4. Obriga a gastar tudo antes do fim do floor.</div>
+      </div>
+
+      <div class="card" data-type="major">
+        <div class="card-top">
+          <div class="card-name">Deadly Snare</div>
+          <div class="card-type type-major">Major</div>
+        </div>
+        <div class="card-effect">"Armadilhas causam Resolve infinito."</div>
+        <div class="card-note">Qualquer toque em armadilha encerra imediatamente a run. Perigosa em quase todos os tipos de sala.</div>
+      </div>
+
+      <div class="card" data-type="major">
+        <div class="card-top">
+          <div class="card-name">Veiled Sight</div>
+          <div class="card-type type-major">Major</div>
+        </div>
+        <div class="card-effect">"Salas são desconhecidas no Mapa do Sanctum."</div>
+        <div class="card-note">Remove todo o planejamento de rota. Incapacita qualquer estratégia de recompensas.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- TIER A -->
+  <div class="tier-section tier-a" data-tier="a">
+    <div class="tier-header">
+      <div class="tier-badge">A</div>
+      <div class="tier-title-block">
+        <div class="tier-name">Dangerous</div>
+        <div class="tier-desc">Muito difíceis de lidar — tome apenas se não houver alternativa</div>
+      </div>
+      <div class="tier-count">11 afflições</div>
+    </div>
+    <div class="cards-grid">
+
+      <div class="card" data-type="minor">
+        <div class="card-top">
+          <div class="card-name">Door Tax</div>
+          <div class="card-type type-minor">Minor</div>
+        </div>
+        <div class="card-effect">"Perca 30 moedas Aureus ao completar uma sala."</div>
+        <div class="card-note">Drena Aureus de forma consistente, dificultando o uso de Merchants e Fountains. Menos impactante no final da run.</div>
+      </div>
+
+      <div class="card" data-type="minor">
+        <div class="card-top">
+          <div class="card-name">Empty Trove</div>
+          <div class="card-type type-minor">Minor</div>
+        </div>
+        <div class="card-effect">"Baús não dropam mais moedas Aureus."</div>
+        <div class="card-note">Devastador nos andares iniciais pois Treasure Rooms são a principal fonte de Aureus.</div>
+      </div>
+
+      <div class="card" data-type="minor">
+        <div class="card-top">
+          <div class="card-name">Voodoo Doll</div>
+          <div class="card-type type-minor">Minor</div>
+        </div>
+        <div class="card-effect">"100% mais Resolve perdido enquanto Resolve estiver abaixo de 50%."</div>
+        <div class="card-note">Transforma situações já difíceis em fatais. Qualquer hit com Resolve baixo se torna exponencialmente mais perigoso.</div>
+      </div>
+
+      <div class="card" data-type="minor">
+        <div class="card-top">
+          <div class="card-name">Haemorrhage</div>
+          <div class="card-type type-minor">Minor</div>
+        </div>
+        <div class="card-effect">"Você não pode recuperar Resolve (removida após matar o próximo Boss do andar)."</div>
+        <div class="card-note">Temporária, mas impede toda recuperação até o próximo boss. Extremamente perigosa em andares longos.</div>
+      </div>
+
+      <div class="card" data-type="major">
+        <div class="card-top">
+          <div class="card-name">Demonic Skull</div>
+          <div class="card-type type-major">Major</div>
+        </div>
+        <div class="card-effect">"Não é possível recuperar Resolve."</div>
+        <div class="card-note">Versão permanente do Haemorrhage. Bloqueia qualquer recuperação pelo restante da run.</div>
+      </div>
+
+      <div class="card" data-type="major">
+        <div class="card-top">
+          <div class="card-name">Death Toll</div>
+          <div class="card-type type-major">Major</div>
+        </div>
+        <div class="card-effect">"Perca 250 de Resolve após completar N salas."</div>
+        <div class="card-note">Perda massiva de Resolve programada. Versões com 1–2 salas são extremamente perigosas.</div>
+      </div>
+
+      <div class="card" data-type="major">
+        <div class="card-top">
+          <div class="card-name">Ghastly Scythe</div>
+          <div class="card-type type-major">Major</div>
+        </div>
+        <div class="card-effect">"Perder qualquer Resolve encerra o Sanctum (removida após N salas)."</div>
+        <div class="card-note">Modo hardcore temporário. Exige jogo perfeito por 1–3 salas. Um erro = run encerrada.</div>
+      </div>
+
+      <div class="card" data-type="major">
+        <div class="card-top">
+          <div class="card-name">Cutpurse</div>
+          <div class="card-type type-major">Major</div>
+        </div>
+        <div class="card-effect">"Você não pode ganhar moedas Aureus."</div>
+        <div class="card-note">Elimina a principal economia do Sanctum. Torna Merchants e Fountains inviáveis.</div>
+      </div>
+
+      <div class="card" data-type="minor">
+        <div class="card-top">
+          <div class="card-name">Tight Choker</div>
+          <div class="card-type type-minor">Minor</div>
+        </div>
+        <div class="card-effect">"Você pode ter no máximo 5 Boons."</div>
+        <div class="card-note">Limita severamente o crescimento de poder. Devastadora para estratégias baseadas em acumular Boons.</div>
+      </div>
+
+      <div class="card" data-type="major">
+        <div class="card-top">
+          <div class="card-name">Unassuming Brick</div>
+          <div class="card-type type-major">Major</div>
+        </div>
+        <div class="card-effect">"Você não pode ganhar mais Boons."</div>
+        <div class="card-note">Congela completamente a progressão de poder. Incapacita qualquer estratégia de Boons.</div>
+      </div>
+
+      <div class="card" data-type="minor">
+        <div class="card-top">
+          <div class="card-name">Dark Pit</div>
+          <div class="card-type type-minor">Minor</div>
+        </div>
+        <div class="card-effect">"Armadilhas causam 200% mais Resolve."</div>
+        <div class="card-note">Qualquer erro com armadilha se torna catastrófico. Especialmente brutal em salas com muitas armadilhas.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- TIER B -->
+  <div class="tier-section tier-b" data-tier="b">
+    <div class="tier-header">
+      <div class="tier-badge">B</div>
+      <div class="tier-title-block">
+        <div class="tier-name">Manageable</div>
+        <div class="tier-desc">Apresentam ameaça real, mas são contornáveis com cuidado</div>
+      </div>
+      <div class="tier-count">17 afflições</div>
+    </div>
+    <div class="cards-grid">
+
+      <div class="card" data-type="minor">
+        <div class="card-top">
+          <div class="card-name">Worn Sandals</div>
+          <div class="card-type type-minor">Minor</div>
+        </div>
+        <div class="card-effect">"40% de velocidade de movimento reduzida."</div>
+        <div class="card-note">Muito perigosa no início, mais administrável com builds de alta mobilidade.</div>
+      </div>
+
+      <div class="card" data-type="minor">
+        <div class="card-top">
+          <div class="card-name">Hungry Fangs</div>
+          <div class="card-type type-minor">Minor</div>
+        </div>
+        <div class="card-effect">"Monstros causam 25% mais Resolve."</div>
+        <div class="card-note">Amplifica cada erro. Combinada com outras afflictions de Resolve pode ser fatal.</div>
+      </div>
+
+      <div class="card" data-type="minor">
+        <div class="card-top">
+          <div class="card-name">Honed Claws</div>
+          <div class="card-type type-minor">Minor</div>
+        </div>
+        <div class="card-effect">"Monstros causam 50% mais Dano."</div>
+        <div class="card-note">Aumenta o dano real tomado. Mais perigosa em conteúdo onde tomar dano ainda importa.</div>
+      </div>
+
+      <div class="card" data-type="minor">
+        <div class="card-top">
+          <div class="card-name">Weakened Flesh</div>
+          <div class="card-type type-minor">Minor</div>
+        </div>
+        <div class="card-effect">"-100 de Resolve Máximo."</div>
+        <div class="card-note">Reduz permanentemente a margem de erro. Combinada com outras afflictions pode ser fatal.</div>
+      </div>
+
+      <div class="card" data-type="minor">
+        <div class="card-top">
+          <div class="card-name">Mark of Terror</div>
+          <div class="card-type type-minor">Minor</div>
+        </div>
+        <div class="card-effect">"Monstros infligem Resolve Weakness ao acertar."</div>
+        <div class="card-note">Hits seguidos causam 50% mais Resolve. Perigosa se você toma múltiplos hits.</div>
+      </div>
+
+      <div class="card" data-type="minor">
+        <div class="card-top">
+          <div class="card-name">Unquenched Thirst</div>
+          <div class="card-type type-minor">Minor</div>
+        </div>
+        <div class="card-effect">"50% de Resolve recuperado reduzido."</div>
+        <div class="card-note">Torna Fountains e recuperações muito menos eficientes ao longo da run.</div>
+      </div>
+
+      <div class="card" data-type="minor">
+        <div class="card-top">
+          <div class="card-name">Spiked Shell</div>
+          <div class="card-type type-minor">Minor</div>
+        </div>
+        <div class="card-effect">"Monstros têm 50% mais Vida Máxima."</div>
+        <div class="card-note">Prolonga combates, aumentando a exposição ao dano. Prejudica builds de baixo DPS.</div>
+      </div>
+
+      <div class="card" data-type="minor">
+        <div class="card-top">
+          <div class="card-name">Concealed Anomaly</div>
+          <div class="card-type type-minor">Minor</div>
+        </div>
+        <div class="card-effect">"Guardiões liberam uma Anomalia Volátil ao morrer."</div>
+        <div class="card-note">Cria perigo inesperado após kills. Exige atenção extra no posicionamento.</div>
+      </div>
+
+      <div class="card" data-type="major">
+        <div class="card-top">
+          <div class="card-name">Anomaly Attractor</div>
+          <div class="card-type type-major">Major</div>
+        </div>
+        <div class="card-effect">"Salas geram Anomalias Voláteis."</div>
+        <div class="card-note">Adiciona perigos móveis em todas as salas. Administrável com boa mobilidade.</div>
+      </div>
+
+      <div class="card" data-type="minor">
+        <div class="card-top">
+          <div class="card-name">Rapid Quicksand</div>
+          <div class="card-type type-minor">Minor</div>
+        </div>
+        <div class="card-effect">"Armadilhas são mais rápidas."</div>
+        <div class="card-note">Reduz a janela de reação. Problemática em salas com muitas armadilhas.</div>
+      </div>
+
+      <div class="card" data-type="minor">
+        <div class="card-top">
+          <div class="card-name">Blunt Sword</div>
+          <div class="card-type type-minor">Minor</div>
+        </div>
+        <div class="card-effect">"Você e seus Lacaios causam 40% menos Dano."</div>
+        <div class="card-note">Prolonga combates e aumenta exposição. Crítica para builds de baixo dano base.</div>
+      </div>
+
+      <div class="card" data-type="minor">
+        <div class="card-top">
+          <div class="card-name">Spilt Purse</div>
+          <div class="card-type type-minor">Minor</div>
+        </div>
+        <div class="card-effect">"Perca 20 moedas Aureus ao perder Resolve por um Hit."</div>
+        <div class="card-note">Penaliza cada erro com Aureus. Ruim quando combinada com afflictions que aumentam dano dos monstros.</div>
+      </div>
+
+      <div class="card" data-type="minor">
+        <div class="card-top">
+          <div class="card-name">Red Smoke</div>
+          <div class="card-type type-minor">Minor</div>
+        </div>
+        <div class="card-effect">"Tipos de sala são desconhecidos no Mapa do Sanctum."</div>
+        <div class="card-note">Prejudica o planejamento de rota, mas menos impactante que Golden ou Purple Smoke.</div>
+      </div>
+
+      <div class="card" data-type="minor">
+        <div class="card-top">
+          <div class="card-name">Unhallowed Ring</div>
+          <div class="card-type type-minor">Minor</div>
+        </div>
+        <div class="card-effect">"Preços do Merchant aumentados em 50%."</div>
+        <div class="card-note">Dificulta a compra de Boons importantes. Combinada com afflictions de Aureus pode ser problemática.</div>
+      </div>
+
+      <div class="card" data-type="major">
+        <div class="card-top">
+          <div class="card-name">Chiselled Stone</div>
+          <div class="card-type type-major">Major</div>
+        </div>
+        <div class="card-effect">"Monstros Petrificam ao acertar."</div>
+        <div class="card-note">Petrificação reduz drasticamente a velocidade de movimento, aumentando o risco de tomar hits adicionais.</div>
+      </div>
+
+      <div class="card" data-type="major">
+        <div class="card-top">
+          <div class="card-name">Corrosive Concoction</div>
+          <div class="card-type type-major">Major</div>
+        </div>
+        <div class="card-effect">"Sem Resolve Mitigation, chance de evitar perda de Resolve ou Resolve Aegis."</div>
+        <div class="card-note">Remove todas as defesas de Resolve. Cada hit causa dano máximo possível.</div>
+      </div>
+
+      <div class="card" data-type="minor">
+        <div class="card-top">
+          <div class="card-name">Poisoned Water</div>
+          <div class="card-type type-minor">Minor</div>
+        </div>
+        <div class="card-effect">"Ganhe uma Minor Affliction aleatória ao usar uma Fountain."</div>
+        <div class="card-note">Transforma recuperação de Resolve em risco. Pode gerar Afflictions Run-Ending.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- TIER C -->
+  <div class="tier-section tier-c" data-tier="c">
+    <div class="tier-header">
+      <div class="tier-badge">C</div>
+      <div class="tier-title-block">
+        <div class="tier-name">Freebie / Baixo Impacto</div>
+        <div class="tier-desc">Pouco ou nenhum impacto real na run — praticamente ignoráveis</div>
+      </div>
+      <div class="tier-count">10 afflições</div>
+    </div>
+    <div class="cards-grid">
+
+      <div class="card" data-type="minor">
+        <div class="card-top">
+          <div class="card-name">Gargoyle Totem</div>
+          <div class="card-type type-minor">Minor</div>
+        </div>
+        <div class="card-effect">"Guardiões são acompanhados por um Gárgula."</div>
+        <div class="card-note">Gárgulas têm pouca vida e morrem rápido. Leap Slam pode ser irritante, mas é facilmente evitado.</div>
+      </div>
+
+      <div class="card" data-type="minor">
+        <div class="card-top">
+          <div class="card-name">Chains of Binding</div>
+          <div class="card-type type-minor">Minor</div>
+        </div>
+        <div class="card-effect">"Monstros infligem Correntes ao acertar."</div>
+        <div class="card-note">Apenas 20% de slow, cancelado por qualquer skill de movimento. Só é perigoso se você levar hits seguidos.</div>
+      </div>
+
+      <div class="card" data-type="minor">
+        <div class="card-top">
+          <div class="card-name">Tattered Blindfold</div>
+          <div class="card-type type-minor">Minor</div>
+        </div>
+        <div class="card-effect">"90% de raio de luz reduzido. Minimapa oculto."</div>
+        <div class="card-note">Visibilidade reduzida, mas o layout fixo das salas torna isso quase irrelevante após aprender os mapas.</div>
+      </div>
+
+      <div class="card" data-type="minor">
+        <div class="card-top">
+          <div class="card-name">Spiked Exit</div>
+          <div class="card-type type-minor">Minor</div>
+        </div>
+        <div class="card-effect">"Perca 5% do Resolve atual ao completar uma sala."</div>
+        <div class="card-note">Percentual do Resolve atual, não máximo. Com Resolve alto é praticamente irrelevante.</div>
+      </div>
+
+      <div class="card" data-type="minor">
+        <div class="card-top">
+          <div class="card-name">Black Smoke</div>
+          <div class="card-type type-minor">Minor</div>
+        </div>
+        <div class="card-effect">"Você pode ver uma sala a menos no Mapa do Sanctum."</div>
+        <div class="card-note">Prejudica levemente o planejamento. Impacto mínimo comparado às outras afflictions de visão.</div>
+      </div>
+
+      <div class="card" data-type="minor">
+        <div class="card-top">
+          <div class="card-name">Charred Coin</div>
+          <div class="card-type type-minor">Minor</div>
+        </div>
+        <div class="card-effect">"50% menos moedas Aureus encontradas."</div>
+        <div class="card-note">Menos Aureus, mas ainda coletável. Bem menos impactante que Empty Trove ou Floor Tax.</div>
+      </div>
+
+      <div class="card" data-type="minor">
+        <div class="card-top">
+          <div class="card-name">Rusted Coin</div>
+          <div class="card-type type-minor">Minor</div>
+        </div>
+        <div class="card-effect">"O Merchant oferece apenas uma escolha."</div>
+        <div class="card-note">Reduz opções mas ainda permite comprar Boons. Longe de ser fatal.</div>
+      </div>
+
+      <div class="card" data-type="minor">
+        <div class="card-top">
+          <div class="card-name">Unholy Urn</div>
+          <div class="card-type type-minor">Minor</div>
+        </div>
+        <div class="card-effect">"50% de efeito reduzido dos seus Relics não-únicos."</div>
+        <div class="card-note">Afeta apenas Relics comuns. Praticamente irrelevante se você usa Relics únicos.</div>
+      </div>
+
+      <div class="card" data-type="minor">
+        <div class="card-top">
+          <div class="card-name">Corrupted Lockpick</div>
+          <div class="card-type type-minor">Minor</div>
+        </div>
+        <div class="card-effect">"Baús nas salas explodem quando abertos."</div>
+        <div class="card-note">Fácil de gerenciar. Basta afastar após abrir. Dano real é contornável.</div>
+      </div>
+
+      <div class="card" data-type="major">
+        <div class="card-top">
+          <div class="card-name">Orb of Negation</div>
+          <div class="card-type type-major">Major</div>
+        </div>
+        <div class="card-effect">"Relics não-únicos não têm efeito."</div>
+        <div class="card-note">Desativa Relics comuns completamente. Irrelevante se você usa Relics únicos poderosos.</div>
+      </div>
+
+    </div>
+  </div>
+
+  </div><!-- end tab-guia -->
+</div><!-- end main -->
+
+<footer>
+  Baseado no guia da PoE Vault · Atualizado para PoE 3.25 · The Forbidden Sanctum
+</footer>
+
+<script>
+function switchTab(id, btn) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('tab-' + id).classList.add('active');
+}
+
+function filterTier(tier, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+
+  const sections = document.querySelectorAll('.tier-section');
+  const cards = document.querySelectorAll('.card');
+
+  sections.forEach(s => {
+    if (tier === 'all' || tier === 'major' || tier === 'minor') {
+      s.style.display = '';
+    } else {
+      s.style.display = s.dataset.tier === tier ? '' : 'none';
+    }
+  });
+
+  if (tier === 'major' || tier === 'minor') {
+    cards.forEach(c => {
+      const t = tier === 'major' ? 'major' : 'minor';
+      c.style.display = c.dataset.type === t ? '' : 'none';
+    });
+  } else {
+    cards.forEach(c => c.style.display = '');
+  }
+}
+</script>
+
+</body>
+</html>
