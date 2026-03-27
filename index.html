@@ -338,6 +338,7 @@
   .qr-s { background: #2a0a0a; }
   .qr-a { background: #251500; }
   .qr-b { background: #061825; }
+  .qr-c { background: #0a1a0a; }
   .qr-letter {
     font-family: 'Cinzel Decorative', serif;
     font-size: 28px;
@@ -347,6 +348,7 @@
   .qr-s .qr-letter { color: var(--s-color); text-shadow: 0 0 16px var(--s-glow); }
   .qr-a .qr-letter { color: var(--a-color); }
   .qr-b .qr-letter { color: var(--b-color); }
+  .qr-c .qr-letter { color: var(--c-color); }
   .qr-sub {
     font-family: 'Cinzel', serif;
     font-size: 9px;
@@ -484,6 +486,81 @@
     .rooms-grid { grid-template-columns: 1fr; }
   }
 
+  /* search bar */
+  .search-bar-wrap {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 22px;
+  }
+  .search-bar {
+    width: 100%;
+    max-width: 480px;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 10px 16px 10px 40px;
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    letter-spacing: 1px;
+    color: var(--text);
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%237a6348' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: 14px center;
+  }
+  .search-bar:focus { border-color: var(--gold-dark); box-shadow: 0 0 12px #c9a84c22; }
+  .search-bar::placeholder { color: var(--text-dim); }
+  .search-no-results {
+    text-align: center;
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+    color: var(--text-dim);
+    padding: 40px 0;
+    display: none;
+  }
+
+  /* drag-drop */
+  .card {
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s, opacity 0.2s;
+  }
+  .card[draggable="true"] { cursor: grab; }
+  .card[draggable="true"]:active { cursor: grabbing; }
+  .card.dragging { opacity: 0.4; transform: scale(0.97); }
+  .cards-grid.drag-over { outline: 2px dashed var(--gold-dark); outline-offset: 4px; border-radius: 4px; }
+
+  /* tier-moved badge */
+  .card .moved-badge {
+    position: absolute;
+    top: 6px; right: 8px;
+    font-family: 'Cinzel', serif;
+    font-size: 8px;
+    letter-spacing: 1px;
+    padding: 2px 5px;
+    border-radius: 2px;
+    opacity: 0.7;
+  }
+  .tier-s .moved-badge { background: #ff444422; color: var(--s-color); border: 1px solid var(--s-color); }
+  .tier-a .moved-badge { background: #ff8c0022; color: var(--a-color); border: 1px solid var(--a-color); }
+  .tier-b .moved-badge { background: #4fc3f722; color: var(--b-color); border: 1px solid var(--b-color); }
+  .tier-c .moved-badge { background: #81c78422; color: var(--c-color); border: 1px solid var(--c-color); }
+
+  .reset-btn {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    background: transparent;
+    border: 1px solid #3a2d1a;
+    color: var(--text-dim);
+    cursor: pointer;
+    border-radius: 2px;
+    transition: all 0.2s;
+    margin-left: auto;
+  }
+  .reset-btn:hover { border-color: #ff4444; color: #ff6666; }
+
   /* filter bar */
   .filter-bar {
     display: flex;
@@ -551,78 +628,9 @@
     <button class="tab-btn" onclick="switchTab('salas', this)">🗺️ Objetivos das Salas</button>
   </div>
 
-  <!-- REFERÊNCIA RÁPIDA -->
+  <!-- REFERÊNCIA RÁPIDA — gerada dinamicamente -->
   <div id="tab-ref" class="tab-panel">
-    <div class="qr-grid">
-
-      <!-- S -->
-      <div class="qr-col">
-        <div class="qr-head qr-s">
-          <div class="qr-letter">S</div>
-          <div class="qr-sub">Encerra a run — nunca pegar</div>
-        </div>
-        <div class="qr-items">
-          <div class="qr-item"><span class="qr-name">Deceptive Mirror</span><span class="qr-tag qr-tag-minor">Minor</span></div>
-          <div class="qr-item"><span class="qr-name">Fiendish Wings</span><span class="qr-tag qr-tag-minor">Minor</span></div>
-          <div class="qr-item"><span class="qr-name">Liquid Cowardice</span><span class="qr-tag qr-tag-minor">Minor</span></div>
-          <div class="qr-item"><span class="qr-name">Accursed Prism</span><span class="qr-tag qr-tag-minor">Minor</span></div>
-          <div class="qr-item"><span class="qr-name">Purple Smoke</span><span class="qr-tag qr-tag-minor">Minor</span></div>
-          <div class="qr-item"><span class="qr-name">Golden Smoke</span><span class="qr-tag qr-tag-minor">Minor</span></div>
-          <div class="qr-item"><span class="qr-name">Floor Tax</span><span class="qr-tag qr-tag-minor">Minor</span></div>
-          <div class="qr-item"><span class="qr-name">Deadly Snare</span><span class="qr-tag qr-tag-major">Major</span></div>
-          <div class="qr-item"><span class="qr-name">Veiled Sight</span><span class="qr-tag qr-tag-major">Major</span></div>
-        </div>
-      </div>
-
-      <!-- A -->
-      <div class="qr-col">
-        <div class="qr-head qr-a">
-          <div class="qr-letter">A</div>
-          <div class="qr-sub">Muito perigosa — evitar se possível</div>
-        </div>
-        <div class="qr-items">
-          <div class="qr-item"><span class="qr-name">Door Tax</span><span class="qr-tag qr-tag-minor">Minor</span></div>
-          <div class="qr-item"><span class="qr-name">Empty Trove</span><span class="qr-tag qr-tag-minor">Minor</span></div>
-          <div class="qr-item"><span class="qr-name">Voodoo Doll</span><span class="qr-tag qr-tag-minor">Minor</span></div>
-          <div class="qr-item"><span class="qr-name">Haemorrhage</span><span class="qr-tag qr-tag-minor">Minor</span></div>
-          <div class="qr-item"><span class="qr-name">Tight Choker</span><span class="qr-tag qr-tag-minor">Minor</span></div>
-          <div class="qr-item"><span class="qr-name">Dark Pit</span><span class="qr-tag qr-tag-minor">Minor</span></div>
-          <div class="qr-item"><span class="qr-name">Demonic Skull</span><span class="qr-tag qr-tag-major">Major</span></div>
-          <div class="qr-item"><span class="qr-name">Death Toll</span><span class="qr-tag qr-tag-major">Major</span></div>
-          <div class="qr-item"><span class="qr-name">Ghastly Scythe</span><span class="qr-tag qr-tag-major">Major</span></div>
-          <div class="qr-item"><span class="qr-name">Cutpurse</span><span class="qr-tag qr-tag-major">Major</span></div>
-          <div class="qr-item"><span class="qr-name">Unassuming Brick</span><span class="qr-tag qr-tag-major">Major</span></div>
-        </div>
-      </div>
-
-      <!-- B -->
-      <div class="qr-col">
-        <div class="qr-head qr-b">
-          <div class="qr-letter">B</div>
-          <div class="qr-sub">Administrável — ok com cuidado</div>
-        </div>
-        <div class="qr-items">
-          <div class="qr-item"><span class="qr-name">Worn Sandals</span><span class="qr-tag qr-tag-minor">Minor</span></div>
-          <div class="qr-item"><span class="qr-name">Hungry Fangs</span><span class="qr-tag qr-tag-minor">Minor</span></div>
-          <div class="qr-item"><span class="qr-name">Honed Claws</span><span class="qr-tag qr-tag-minor">Minor</span></div>
-          <div class="qr-item"><span class="qr-name">Weakened Flesh</span><span class="qr-tag qr-tag-minor">Minor</span></div>
-          <div class="qr-item"><span class="qr-name">Mark of Terror</span><span class="qr-tag qr-tag-minor">Minor</span></div>
-          <div class="qr-item"><span class="qr-name">Unquenched Thirst</span><span class="qr-tag qr-tag-minor">Minor</span></div>
-          <div class="qr-item"><span class="qr-name">Spiked Shell</span><span class="qr-tag qr-tag-minor">Minor</span></div>
-          <div class="qr-item"><span class="qr-name">Concealed Anomaly</span><span class="qr-tag qr-tag-minor">Minor</span></div>
-          <div class="qr-item"><span class="qr-name">Rapid Quicksand</span><span class="qr-tag qr-tag-minor">Minor</span></div>
-          <div class="qr-item"><span class="qr-name">Blunt Sword</span><span class="qr-tag qr-tag-minor">Minor</span></div>
-          <div class="qr-item"><span class="qr-name">Spilt Purse</span><span class="qr-tag qr-tag-minor">Minor</span></div>
-          <div class="qr-item"><span class="qr-name">Red Smoke</span><span class="qr-tag qr-tag-minor">Minor</span></div>
-          <div class="qr-item"><span class="qr-name">Unhallowed Ring</span><span class="qr-tag qr-tag-minor">Minor</span></div>
-          <div class="qr-item"><span class="qr-name">Poisoned Water</span><span class="qr-tag qr-tag-minor">Minor</span></div>
-          <div class="qr-item"><span class="qr-name">Anomaly Attractor</span><span class="qr-tag qr-tag-major">Major</span></div>
-          <div class="qr-item"><span class="qr-name">Chiselled Stone</span><span class="qr-tag qr-tag-major">Major</span></div>
-          <div class="qr-item"><span class="qr-name">Corrosive Concoction</span><span class="qr-tag qr-tag-major">Major</span></div>
-        </div>
-      </div>
-
-    </div>
+    <div class="qr-grid" id="qrGrid"></div>
   </div>
 
   <!-- OBJETIVOS DAS SALAS -->
@@ -814,6 +822,9 @@
 
   <!-- GUIA COMPLETO -->
   <div id="tab-guia" class="tab-panel active">
+  <div class="search-bar-wrap">
+    <input class="search-bar" type="text" id="searchInput" placeholder="Pesquisar affliction..." oninput="searchCards(this.value)" autocomplete="off" />
+  </div>
   <div class="filter-bar">
     <button class="filter-btn active" onclick="filterTier('all', this)">Todos</button>
     <button class="filter-btn" onclick="filterTier('s', this)">Tier S</button>
@@ -822,7 +833,9 @@
     <button class="filter-btn" onclick="filterTier('c', this)">Tier C</button>
     <button class="filter-btn" onclick="filterTier('major', this)">Major</button>
     <button class="filter-btn" onclick="filterTier('minor', this)">Minor</button>
+    <button class="reset-btn" onclick="resetTiers()" title="Resetar tier list para o original">↺ Resetar</button>
   </div>
+  <div class="search-no-results" id="noResults">Nenhuma affliction encontrada.</div>
 
   <!-- TIER S -->
   <div class="tier-section tier-s" data-tier="s">
@@ -1315,6 +1328,49 @@
 </footer>
 
 <script>
+// ── Quick Reference sync ──────────────────────────────────────
+const QR_TIER_META = {
+  s: { cls: 'qr-s', sub: 'Encerra a run — nunca pegar' },
+  a: { cls: 'qr-a', sub: 'Muito perigosa — evitar se possível' },
+  b: { cls: 'qr-b', sub: 'Administrável — ok com cuidado' },
+  c: { cls: 'qr-c', sub: 'Quase irrelevante — freebie' },
+};
+
+function syncQuickRef() {
+  const grid = document.getElementById('qrGrid');
+  if (!grid) return;
+  grid.innerHTML = '';
+
+  ['s','a','b','c'].forEach(tier => {
+    const section = document.querySelector(`.tier-section[data-tier="${tier}"]`);
+    if (!section) return;
+    const cards = [...section.querySelectorAll('.card')];
+    if (cards.length === 0) return;
+
+    const meta = QR_TIER_META[tier];
+    const col = document.createElement('div');
+    col.className = 'qr-col';
+    col.innerHTML = `
+      <div class="qr-head ${meta.cls}">
+        <div class="qr-letter">${tier.toUpperCase()}</div>
+        <div class="qr-sub">${meta.sub}</div>
+      </div>
+      <div class="qr-items" id="qr-items-${tier}"></div>`;
+    grid.appendChild(col);
+
+    const itemsEl = col.querySelector('.qr-items');
+    cards.forEach(card => {
+      const name = card.querySelector('.card-name')?.textContent?.trim() || '';
+      const type = card.dataset.type || 'minor';
+      const item = document.createElement('div');
+      item.className = 'qr-item';
+      item.innerHTML = `<span class="qr-name">${name}</span><span class="qr-tag qr-tag-${type}">${type.charAt(0).toUpperCase()+type.slice(1)}</span>`;
+      itemsEl.appendChild(item);
+    });
+  });
+}
+
+// ── Tab switching ─────────────────────────────────────────────
 function switchTab(id, btn) {
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
   document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
@@ -1322,30 +1378,231 @@ function switchTab(id, btn) {
   document.getElementById('tab-' + id).classList.add('active');
 }
 
+// ── Filter ────────────────────────────────────────────────────
+let currentFilter = 'all';
 function filterTier(tier, btn) {
+  currentFilter = tier;
   document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
+  applyVisibility();
+}
 
+function applyVisibility() {
+  const q = (document.getElementById('searchInput')?.value || '').toLowerCase().trim();
   const sections = document.querySelectorAll('.tier-section');
   const cards = document.querySelectorAll('.card');
+  let anyVisible = false;
 
   sections.forEach(s => {
-    if (tier === 'all' || tier === 'major' || tier === 'minor') {
-      s.style.display = '';
-    } else {
-      s.style.display = s.dataset.tier === tier ? '' : 'none';
-    }
+    const tierMatch = currentFilter === 'all' || currentFilter === 'major' || currentFilter === 'minor' || s.dataset.tier === currentFilter;
+    s.style.display = tierMatch ? '' : 'none';
   });
 
-  if (tier === 'major' || tier === 'minor') {
-    cards.forEach(c => {
-      const t = tier === 'major' ? 'major' : 'minor';
-      c.style.display = c.dataset.type === t ? '' : 'none';
-    });
+  cards.forEach(c => {
+    const name = c.querySelector('.card-name')?.textContent.toLowerCase() || '';
+    const effect = c.querySelector('.card-effect')?.textContent.toLowerCase() || '';
+    const note = c.querySelector('.card-note')?.textContent.toLowerCase() || '';
+    const typeMatch = currentFilter !== 'major' && currentFilter !== 'minor'
+      ? true
+      : c.dataset.type === currentFilter;
+    const searchMatch = !q || name.includes(q) || effect.includes(q) || note.includes(q);
+    const visible = typeMatch && searchMatch;
+    c.style.display = visible ? '' : 'none';
+    if (visible) anyVisible = true;
+  });
+
+  // hide empty sections
+  document.querySelectorAll('.tier-section').forEach(s => {
+    const hasVisible = [...s.querySelectorAll('.card')].some(c => c.style.display !== 'none');
+    if (s.style.display !== 'none') s.style.display = hasVisible ? '' : 'none';
+  });
+
+  document.getElementById('noResults').style.display = anyVisible ? 'none' : 'block';
+}
+
+function searchCards(val) {
+  applyVisibility();
+}
+
+// ── Drag & Drop ───────────────────────────────────────────────
+let draggedCard = null;
+
+function initDragDrop() {
+  document.querySelectorAll('.card').forEach(card => {
+    card.setAttribute('draggable', 'true');
+    card.addEventListener('dragstart', onDragStart);
+    card.addEventListener('dragend', onDragEnd);
+  });
+  document.querySelectorAll('.cards-grid').forEach(grid => {
+    grid.addEventListener('dragover', onDragOver);
+    grid.addEventListener('dragleave', onDragLeave);
+    grid.addEventListener('drop', onDrop);
+  });
+}
+
+function onDragStart(e) {
+  draggedCard = this;
+  this.classList.add('dragging');
+  e.dataTransfer.effectAllowed = 'move';
+}
+function onDragEnd() {
+  this.classList.remove('dragging');
+  document.querySelectorAll('.cards-grid').forEach(g => g.classList.remove('drag-over'));
+}
+function onDragOver(e) {
+  e.preventDefault();
+  e.dataTransfer.dropEffect = 'move';
+  this.classList.add('drag-over');
+}
+function onDragLeave() {
+  this.classList.remove('drag-over');
+}
+function onDrop(e) {
+  e.preventDefault();
+  this.classList.remove('drag-over');
+  if (!draggedCard || this.contains(draggedCard)) return;
+
+  // find destination tier
+  const destSection = this.closest('.tier-section');
+  if (!destSection) return;
+  const destTier = destSection.dataset.tier;
+
+  // find where to insert (before the card under cursor)
+  const afterEl = getDragAfterElement(this, e.clientY);
+  if (afterEl) {
+    this.insertBefore(draggedCard, afterEl);
   } else {
-    cards.forEach(c => c.style.display = '');
+    this.appendChild(draggedCard);
+  }
+
+  // update original tier attribute
+  const srcSection = draggedCard.closest('.tier-section');
+  if (srcSection) draggedCard.dataset.originalTier = srcSection.dataset.tier;
+
+  // update tier badge on card
+  updateCardTier(draggedCard, destTier);
+
+  // update section counts
+  updateCounts();
+
+  // sync quick reference tab
+  syncQuickRef();
+
+  // save state
+  saveTiers();
+
+  // re-apply current filter/search
+  applyVisibility();
+
+  // re-bind drag events on the moved card
+  draggedCard.removeEventListener('dragstart', onDragStart);
+  draggedCard.removeEventListener('dragend', onDragEnd);
+  draggedCard.addEventListener('dragstart', onDragStart);
+  draggedCard.addEventListener('dragend', onDragEnd);
+
+  draggedCard = null;
+}
+
+function getDragAfterElement(container, y) {
+  const els = [...container.querySelectorAll('.card:not(.dragging)')];
+  return els.reduce((closest, child) => {
+    const box = child.getBoundingClientRect();
+    const offset = y - box.top - box.height / 2;
+    if (offset < 0 && offset > closest.offset) return { offset, element: child };
+    return closest;
+  }, { offset: Number.NEGATIVE_INFINITY }).element;
+}
+
+function updateCardTier(card, tier) {
+  // remove old moved badge
+  card.querySelector('.moved-badge')?.remove();
+  // add badge only if moved from default
+  if (card.dataset.defaultTier && card.dataset.defaultTier !== tier) {
+    const badge = document.createElement('span');
+    badge.className = 'moved-badge';
+    badge.textContent = tier.toUpperCase();
+    card.appendChild(badge);
   }
 }
+
+function updateCounts() {
+  document.querySelectorAll('.tier-section').forEach(s => {
+    const count = s.querySelectorAll('.card').length;
+    const el = s.querySelector('.tier-count');
+    if (el) el.textContent = count + (count === 1 ? ' afflição' : ' afflições');
+  });
+}
+
+// ── LocalStorage persistence ──────────────────────────────────
+const STORAGE_KEY = 'poe-sanctum-tiers-v1';
+
+function saveTiers() {
+  const state = {};
+  document.querySelectorAll('.tier-section').forEach(section => {
+    const tier = section.dataset.tier;
+    [...section.querySelectorAll('.card')].forEach((card, idx) => {
+      const name = card.querySelector('.card-name')?.textContent?.trim();
+      if (name) state[name] = { tier, order: idx };
+    });
+  });
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch(e) {}
+}
+
+function loadTiers() {
+  let state;
+  try { state = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null'); } catch(e) { state = null; }
+  if (!state) return;
+
+  // group by tier-order
+  const byTier = { s: [], a: [], b: [], c: [] };
+  Object.entries(state).forEach(([name, { tier, order }]) => {
+    if (byTier[tier]) byTier[tier].push({ name, order });
+  });
+  Object.keys(byTier).forEach(t => byTier[t].sort((a, b) => a.order - b.order));
+
+  // move cards
+  Object.entries(byTier).forEach(([tier, entries]) => {
+    const destGrid = document.querySelector(`.tier-section[data-tier="${tier}"] .cards-grid`);
+    if (!destGrid) return;
+    entries.forEach(({ name }) => {
+      const card = findCardByName(name);
+      if (!card) return;
+      destGrid.appendChild(card);
+      updateCardTier(card, tier);
+    });
+  });
+
+  updateCounts();
+}
+
+function findCardByName(name) {
+  for (const el of document.querySelectorAll('.card')) {
+    if (el.querySelector('.card-name')?.textContent?.trim() === name) return el;
+  }
+  return null;
+}
+
+function resetTiers() {
+  if (!confirm('Resetar a tier list para o estado original?')) return;
+  try { localStorage.removeItem(STORAGE_KEY); } catch(e) {}
+  location.reload();
+}
+
+// ── Init ──────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  // mark default tier for each card
+  document.querySelectorAll('.tier-section').forEach(section => {
+    const tier = section.dataset.tier;
+    section.querySelectorAll('.card').forEach(card => {
+      card.dataset.defaultTier = tier;
+    });
+  });
+
+  loadTiers();
+  initDragDrop();
+  updateCounts();
+  syncQuickRef();
+});
 </script>
 
 </body>
